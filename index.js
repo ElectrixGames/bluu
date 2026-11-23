@@ -2,6 +2,7 @@
 //   /                 the Bluu home page (games, your profile, log in)
 //   /arena-clash      Arena Clash            (game server: arena.js, socket /ws/arena)
 //   /lightning-duels  Lightning Duels        (game server: duels.js, socket /ws/duels)
+//   /iso-3d           Iso 3D                 (game server: iso.js, socket /ws/iso, rules shared in public/iso-core.js)
 //   /slap-brawl       Slap Brawl             (game server: slap.js, socket /ws/slap, rules shared in public/slap-core.js)
 // Environment variables on Render: MONGODB_URI (accounts and leaderboards), DEV_KEY (developer powers).
 const http = require('http');
@@ -19,6 +20,7 @@ const GAMES = [
   { id: 'arena', path: '/ws/arena', file: './arena', opts: { maxPayload: 16384 } },
   { id: 'duels', path: '/ws/duels', file: './duels', opts: { maxPayload: 16384 } },
   { id: 'slap', path: '/ws/slap', file: './slap', opts: { maxPayload: 80000 } },
+  { id: 'iso', path: '/ws/iso', file: './iso', opts: { maxPayload: 150000 } },
 ];
 const sockets = {};
 for (const g of GAMES) {
@@ -34,6 +36,8 @@ const PAGES = {   // web address -> file in the public folder
   '/lightning-duels': 'lightning-duels.html',
   '/slap-brawl': 'slap-brawl.html',
   '/slap-core.js': 'slap-core.js',
+  '/iso-3d': 'iso-3d.html',
+  '/iso-core.js': 'iso-core.js',
   '/ads.txt': 'ads.txt',
 };
 const TYPES = { '.html': 'text/html; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.js': 'text/javascript; charset=utf-8' };
@@ -62,11 +66,12 @@ function profileOf(a) {
     username: a.username, uid: a.uid, dev: !!a.dev, created: a.created || 0,
     arena: { wins: lb.wins || 0, kills: lb.kills || 0, matches: lb.matches || 0, rp: a.rp || 0, rank: A.rankName(a.rp || 0), crystals: (a.wallet && a.wallet.crystals) || 0 },
     slap: { wins: (a.slapstats && a.slapstats.wins) || 0, losses: (a.slapstats && a.slapstats.losses) || 0, goals: (a.slapstats && a.slapstats.goals) || 0, kos: (a.slapstats && a.slapstats.kos) || 0, matches: (a.slapstats && a.slapstats.matches) || 0, elo: (a.slap && a.slap.elo) || 1000 },
+    iso: { wins: (a.isostats && a.isostats.wins) || 0, losses: (a.isostats && a.isostats.losses) || 0, pts: (a.isostats && a.isostats.pts) || 0, dunks: (a.isostats && a.isostats.dunks) || 0, elo: (a.iso && a.iso.elo && a.iso.elo.e1) || 1000 },
     duels: { wins: (d && d.wins) || 0, losses: (d && d.losses) || 0, streak: (d && d.streak) || 0, bestStreak: (d && d.bestStreak) || 0, matches: (d && d.matches) || 0 },
   };
 }
 async function api(route, body, ip) {
-  if (route === 'status') return { ok: true, accounts: !!(bluu.accounts && bluu.accounts.col), online: { arena: bluu.arena ? bluu.arena.online() : 0, duels: bluu.duels ? bluu.duels.online() : 0, slap: bluu.slap ? bluu.slap.online() : 0 } };
+  if (route === 'status') return { ok: true, accounts: !!(bluu.accounts && bluu.accounts.col), online: { arena: bluu.arena ? bluu.arena.online() : 0, duels: bluu.duels ? bluu.duels.online() : 0, slap: bluu.slap ? bluu.slap.online() : 0, iso: bluu.iso ? bluu.iso.online() : 0 } };
   const A = bluu.accounts, col = A && A.col;
   if (!col) return { ok: false, error: process.env.MONGODB_URI ? 'Accounts are still starting up. Try again in a few seconds.' : 'Accounts are offline right now. You can still play as a guest.' };
   const username = String(body.username || '').trim(), password = String(body.password || '');
