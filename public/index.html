@@ -178,6 +178,16 @@ const ART = {
     <path d="M160 30 L140 84 L158 84 L146 126 L184 70 L165 70 L178 30Z" fill="#ffe14a" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
     <circle cx="160" cy="118" r="14" fill="#fff6c0" opacity=".85"/>
     <text x="160" y="190" text-anchor="middle" font-family="Lilita One,Arial Black,sans-serif" font-size="28" fill="#fff" stroke="#0d3f78" stroke-width="5" paint-order="stroke">LIGHTNING DUELS</text></svg>`,
+  iso: `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="is" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#05070d"/><stop offset="1" stop-color="#1b212c"/></linearGradient><radialGradient id="il" cx=".5" cy="0" r=".8"><stop offset="0" stop-color="#fff6d6" stop-opacity=".35"/><stop offset="1" stop-color="#fff6d6" stop-opacity="0"/></radialGradient></defs>
+    <rect width="320" height="200" fill="url(#is)"/><rect width="320" height="200" fill="url(#il)"/>
+    <g fill="#0f172a"><rect x="0" y="70" width="30" height="70"/><rect x="34" y="50" width="26" height="90"/><rect x="250" y="60" width="30" height="80"/><rect x="284" y="40" width="36" height="100"/></g>
+    <g fill="#fbbf24" opacity=".7"><rect x="40" y="60" width="4" height="4"/><rect x="50" y="76" width="4" height="4"/><rect x="292" y="52" width="4" height="4"/><rect x="304" y="70" width="4" height="4"/><rect x="258" y="74" width="4" height="4"/></g>
+    <path d="M0 150 L320 150 L320 200 L0 200Z" fill="#16191f"/><path d="M60 200 Q160 120 260 200" stroke="#22d3ee" stroke-width="3" fill="none"/><path d="M110 200 L110 158 L210 158 L210 200" stroke="#fbbf24" stroke-width="3" fill="none"/>
+    <rect x="128" y="40" width="64" height="40" fill="none" stroke="#22d3ee" stroke-width="3"/><rect x="148" y="58" width="24" height="16" fill="none" stroke="#22d3ee" stroke-width="2"/>
+    <ellipse cx="160" cy="84" rx="16" ry="4" fill="none" stroke="#ff6a3d" stroke-width="3"/><path d="M146 86 L152 104 L168 104 L174 86" stroke="#fff" stroke-width="1.5" fill="none" opacity=".8"/>
+    <circle cx="214" cy="56" r="11" fill="#d4602b"/><path d="M203 56 H225 M214 45 V67" stroke="#140a05" stroke-width="1.5"/>
+    <path d="M222 62 Q250 110 238 150" stroke="#22c55e" stroke-width="3" fill="none" stroke-dasharray="4 5"/>
+    <text x="160" y="190" text-anchor="middle" font-family="Barlow Condensed,Arial Narrow,Arial Black,sans-serif" font-style="italic" font-weight="800" font-size="36" fill="#fff" stroke="#05070d" stroke-width="6" paint-order="stroke">ISO <tspan fill="#ff6a3d">3D</tspan></text></svg>`,
   slap: `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8e5bff"/><stop offset=".55" stop-color="#ff6ab0"/><stop offset="1" stop-color="#ffd0a0"/></linearGradient></defs>
     <rect width="320" height="200" fill="url(#ss)"/>
     <g fill="#fff" opacity=".85"><ellipse cx="50" cy="160" rx="60" ry="16"/><ellipse cx="270" cy="168" rx="70" ry="18"/></g>
@@ -193,7 +203,10 @@ const GAMES = [
   { id: 'arena', name: 'Arena Clash', url: '/arena-clash', tag: 'Shooter', short: 'Guns, building and big battles. Free-for-all, teams, Battle Royale and more.',
     desc: 'A fast blocky shooter with building. Jump into free-for-all, Team Deathmatch, Capture the Flag, King of the Hill, Gun Game, Battle Royale or 1v1 duels. Earn Clash Crystals to unlock guns and skins, climb the ranked ladder, and make your own maps.',
     chips: ['🔫 13+ weapons', '🧱 Building', '🏆 Ranked', '👥 Up to 8 players', '🤖 Practice vs bots'] },
-  { id: 'slap', name: 'Slap Brawl', url: '/slap-brawl', tag: 'Fighting', isNew: true, short: 'Slap your friends off sky bridges and score in their portal. Ultimate Edition!',
+  { id: 'iso', name: 'Iso 3D', url: '/iso-3d', tag: 'Sports', isNew: true, short: 'Competitive 3D streetball. 1v1, 2v2 and 3v3 with badges and a shot meter.',
+    desc: 'Take it one-on-one under the lights. Break ankles with crossovers, step-backs, spins and euro steps, then time your jumper for a green release. Build up to 3 MyPlayers with ratings and 12 badges that level up as you play. Play ranked 1v1, 2v2 and 3v3 online, climb the CPU Ladder to the Iso Legend, win an 8-team tournament, or practice in the Park. Instant replays, 4 courts, 8 ball skins and full stats with a shot chart.',
+    chips: ['🏀 1v1 · 2v2 · 3v3', '🟢 Shot meter', '🏅 12 badges', '🪜 CPU Ladder', '🏆 Tournament', '📊 Analytics'] },
+  { id: 'slap', name: 'Slap Brawl', url: '/slap-brawl', tag: 'Fighting', short: 'Slap your friends off sky bridges and score in their portal. Ultimate Edition!',
     desc: 'Slap enemies off floating sky arenas and run into their goal portal. First team to 5 wins. Block slaps, chain air combos, and pick from 10 abilities like Grapple Hook, Shockwave Slam and Time Freeze. Play Bridge Duels from 1v1 to 4v4, King of the Hill, the co-op Boss Raid against THE SLAP OVERLORD, or 2-player split-screen. Open crates for slappers, trails and KO effects, and climb the ranks.',
     chips: ['🧤 13 slappers', '⚡ 10 abilities', '🏝️ 6 sky arenas', '👹 Boss Raid', '🎮 Split-screen', '🏆 Ranked'] },
   { id: 'duels', name: 'Lightning Duels', url: '/lightning-duels', tag: 'Party', short: 'Tag someone with the lightning charge before the storm strikes you!',
@@ -226,6 +239,7 @@ function statsCard(id, inModal) {
   const a = ME.arena, d = ME.duels;
   const box = (title, nums) => `<div class="stat"${inModal ? ' style="box-shadow:none;background:#f8fbff;margin-bottom:16px"' : ''}><h4>${title}</h4><div class="nums">${nums.map(([v, l]) => '<div><b' + (String(v).length > 6 ? ' class="sm"' : '') + '>' + esc(v) + '</b><span>' + l + '</span></div>').join('')}</div></div>`;
   if (id === 'arena') return box('🔫 Arena Clash', [[a.wins, 'Wins'], [a.kills, 'Kills'], [a.rank, 'Rank']]);
+  if (id === 'iso') { const s = ME.iso || {}; return box('🏀 Iso 3D', [[s.wins || 0, 'Wins'], [s.pts || 0, 'Points'], [s.elo || 1000, '1v1 Elo']]); }
   if (id === 'slap') { const s = ME.slap || {}; return box('🧤 Slap Brawl', [[s.wins || 0, 'Wins'], [s.goals || 0, 'Goals'], [s.kos || 0, 'Knockouts']]); }
   if (id === 'duels') return box('⚡ Lightning Duels', [[d.wins, 'Wins'], [d.bestStreak, 'Best streak'], [(d.wins / Math.max(1, d.losses)).toFixed(2), 'W/L ratio']]);
   return '';
@@ -237,7 +251,7 @@ function renderMe() {
     $('meName').innerHTML = esc(ME.username) + (ME.dev ? '<span class="dev">DEV</span>' : '');
     $('hello').innerHTML = 'Welcome back, <em>' + esc(ME.username) + '</em>!';
     $('heroSub').textContent = 'Pick a game and jump in. Your stats are saved to your account in every game.';
-    $('statsBox').innerHTML = '<div class="stats">' + statsCard('slap') + statsCard('arena') + statsCard('duels') + '</div>';
+    $('statsBox').innerHTML = '<div class="stats">' + statsCard('iso') + statsCard('slap') + statsCard('arena') + statsCard('duels') + '</div>';
   } else {
     $('hello').innerHTML = 'Play games with your <em>friends</em>.';
     $('heroSub').textContent = 'Free games, right in your browser. One Bluu account works in every game, and your stats follow you everywhere.';
@@ -249,7 +263,7 @@ function openProfile() {
   const since = ME.created ? new Date(ME.created).toLocaleDateString(undefined, { month: 'long', year: 'numeric' }) : '';
   $('profSheet').innerHTML = `<div class="av" style="background:${avColor(ME.username)}">${esc(ME.username[0].toUpperCase())}</div><h3>${esc(ME.username)}${ME.dev ? '<span class="dev">DEV</span>' : ''}</h3>
     <div style="color:var(--muted);font-size:14px">${since ? 'Joined ' + since + ' · ' : ''}💎 ${ME.arena.crystals} Clash Crystals · Friend code <b>${esc(ME.uid)}</b></div>
-    <div class="stats">${statsCard('slap', true)}${statsCard('arena', true)}${statsCard('duels', true)}</div>
+    <div class="stats">${statsCard('iso', true)}${statsCard('slap', true)}${statsCard('arena', true)}${statsCard('duels', true)}</div>
     <button class="btn plain" id="logout" style="width:100%">Log out</button>`;
   $('profModal').hidden = false;
 }
