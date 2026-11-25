@@ -4,6 +4,7 @@
 //   /lightning-duels  Lightning Duels        (game server: duels.js, socket /ws/duels)
 //   /iso-3d           Iso 3D                 (game server: iso.js, socket /ws/iso, rules shared in public/iso-core.js)
 //   /slap-brawl       Slap Brawl             (game server: slap.js, socket /ws/slap, rules shared in public/slap-core.js)
+//   /pulse-dash       Pulse Dash             (online levels and saves: dash.js, web API /api/dash/...)
 // Environment variables on Render: MONGODB_URI (accounts and leaderboards), DEV_KEY (developer powers).
 const http = require('http');
 const fs = require('fs');
@@ -28,6 +29,7 @@ for (const g of GAMES) {
   require(g.file)(wss, bluu);
   sockets[g.path] = wss;
 }
+require('./dash')(bluu);   // Pulse Dash has no socket, only web API routes
 
 /* ================= pages ================= */
 const PAGES = {   // web address -> file in the public folder
@@ -38,6 +40,7 @@ const PAGES = {   // web address -> file in the public folder
   '/slap-core.js': 'slap-core.js',
   '/iso-3d': 'iso-3d.html',
   '/iso-core.js': 'iso-core.js',
+  '/pulse-dash': 'pulse-dash.html',
   '/ads.txt': 'ads.txt',
 };
 const TYPES = { '.html': 'text/html; charset=utf-8', '.txt': 'text/plain; charset=utf-8', '.js': 'text/javascript; charset=utf-8' };
@@ -67,11 +70,13 @@ function profileOf(a) {
     arena: { wins: lb.wins || 0, kills: lb.kills || 0, matches: lb.matches || 0, rp: a.rp || 0, rank: A.rankName(a.rp || 0), crystals: (a.wallet && a.wallet.crystals) || 0 },
     slap: { wins: (a.slapstats && a.slapstats.wins) || 0, losses: (a.slapstats && a.slapstats.losses) || 0, goals: (a.slapstats && a.slapstats.goals) || 0, kos: (a.slapstats && a.slapstats.kos) || 0, matches: (a.slapstats && a.slapstats.matches) || 0, elo: (a.slap && a.slap.elo) || 1000 },
     iso: { wins: (a.isostats && a.isostats.wins) || 0, losses: (a.isostats && a.isostats.losses) || 0, pts: (a.isostats && a.isostats.pts) || 0, dunks: (a.isostats && a.isostats.dunks) || 0, elo: (a.iso && a.iso.elo && a.iso.elo.e1) || 1000 },
+    dash: { stars: (a.dash && a.dash.stars) || 0, coins: (a.dash && a.dash.coins) || 0, beaten: a.dash && a.dash.lv ? Object.values(a.dash.lv).filter(r => r.done).length : 0 },
     duels: { wins: (d && d.wins) || 0, losses: (d && d.losses) || 0, streak: (d && d.streak) || 0, bestStreak: (d && d.bestStreak) || 0, matches: (d && d.matches) || 0 },
   };
 }
 async function api(route, body, ip) {
-  if (route === 'status') return { ok: true, accounts: !!(bluu.accounts && bluu.accounts.col), online: { arena: bluu.arena ? bluu.arena.online() : 0, duels: bluu.duels ? bluu.duels.online() : 0, slap: bluu.slap ? bluu.slap.online() : 0, iso: bluu.iso ? bluu.iso.online() : 0 } };
+  if (route === 'status') return { ok: true, accounts: !!(bluu.accounts && bluu.accounts.col), online: { arena: bluu.arena ? bluu.arena.online() : 0, duels: bluu.duels ? bluu.duels.online() : 0, slap: bluu.slap ? bluu.slap.online() : 0, iso: bluu.iso ? bluu.iso.online() : 0, dash: bluu.dash ? bluu.dash.online() : 0 } };
+  if (route.startsWith('dash/')) return bluu.dash.api(route.slice(5), body, ip);
   const A = bluu.accounts, col = A && A.col;
   if (!col) return { ok: false, error: process.env.MONGODB_URI ? 'Accounts are still starting up. Try again in a few seconds.' : 'Accounts are offline right now. You can still play as a guest.' };
   const username = String(body.username || '').trim(), password = String(body.password || '');
@@ -109,7 +114,8 @@ const server = http.createServer((req, res) => {
   if (url.startsWith('/api/')) {
     const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
     let raw = '';
-    req.on('data', c => { raw += c; if (raw.length > 4096) req.destroy(); });
+    const limit = url.startsWith('/api/dash/') ? 700000 : 4096;   // Pulse Dash uploads whole levels
+    req.on('data', c => { raw += c; if (raw.length > limit) req.destroy(); });
     req.on('end', async () => {
       let body = {}; try { body = raw ? JSON.parse(raw) : {}; } catch (e) {}
       let out;
