@@ -178,6 +178,18 @@ const ART = {
     <path d="M160 30 L140 84 L158 84 L146 126 L184 70 L165 70 L178 30Z" fill="#ffe14a" stroke="#fff" stroke-width="3" stroke-linejoin="round"/>
     <circle cx="160" cy="118" r="14" fill="#fff6c0" opacity=".85"/>
     <text x="160" y="190" text-anchor="middle" font-family="Lilita One,Arial Black,sans-serif" font-size="28" fill="#fff" stroke="#0d3f78" stroke-width="5" paint-order="stroke">LIGHTNING DUELS</text></svg>`,
+  craft: `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bcs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5d9cff"/><stop offset="1" stop-color="#bfe0ff"/></linearGradient></defs>
+    <rect width="320" height="200" fill="url(#bcs)"/><rect x="252" y="22" width="30" height="30" fill="#fff8d0"/>
+    <g fill="#fff" opacity=".85"><rect x="30" y="30" width="56" height="10"/><rect x="42" y="22" width="30" height="10"/><rect x="160" y="40" width="44" height="8"/></g>
+    <g shape-rendering="crispEdges">
+      <rect y="110" width="320" height="90" fill="#7a5536"/><rect y="104" width="70" height="12" fill="#5c9e39"/><rect x="70" y="92" width="60" height="24" fill="#7a5536"/><rect x="70" y="88" width="60" height="10" fill="#5c9e39"/>
+      <rect x="130" y="100" width="70" height="10" fill="#5c9e39"/><rect x="200" y="80" width="60" height="40" fill="#7a5536"/><rect x="200" y="76" width="60" height="10" fill="#5c9e39"/><rect x="260" y="96" width="60" height="10" fill="#5c9e39"/>
+      <rect y="140" width="320" height="60" fill="#7d7d7d"/><rect x="40" y="160" width="8" height="8" fill="#5decf5"/><rect x="230" y="152" width="8" height="8" fill="#d8af93"/><rect x="150" y="170" width="8" height="8" fill="#1d1d1d"/>
+      <rect x="96" y="58" width="10" height="30" fill="#6b5133"/><rect x="80" y="36" width="42" height="26" fill="#3d7a26"/><rect x="88" y="28" width="26" height="10" fill="#4a8a2e"/>
+      <rect x="228" y="46" width="10" height="30" fill="#e6e3dc"/><rect x="216" y="26" width="34" height="24" fill="#6a9a3e"/>
+    </g>
+    <g transform="translate(160 58) rotate(-35)"><rect x="-3" y="-4" width="6" height="46" fill="#6b5133" stroke="#2a1a0a" stroke-width="2"/><path d="M-24 -6 Q0 -20 24 -6 L24 0 Q0 -12 -24 0Z" fill="#5decf5" stroke="#1d6a78" stroke-width="2"/></g>
+    <text x="160" y="190" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="32" fill="#fff" stroke="#123a8a" stroke-width="6" paint-order="stroke">BLUUCRAFT</text></svg>`,
   dash: `<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pdb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b4fe0"/><stop offset="1" stop-color="#1a1f7a"/></linearGradient><linearGradient id="pdl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
     <rect width="320" height="200" fill="url(#pdb)"/>
     <g fill="none" stroke="#fff" opacity=".12" stroke-width="3"><rect x="20" y="20" width="60" height="60" transform="rotate(18 50 50)"/><circle cx="262" cy="46" r="30"/><path d="M200 120 l30 -52 l30 52z"/></g>
@@ -212,7 +224,10 @@ const GAMES = [
   { id: 'arena', name: 'Arena Clash', url: '/arena-clash', tag: 'Shooter', short: 'Guns, building and big battles. Free-for-all, teams, Battle Royale and more.',
     desc: 'A fast blocky shooter with building. Jump into free-for-all, Team Deathmatch, Capture the Flag, King of the Hill, Gun Game, Battle Royale or 1v1 duels. Earn Clash Crystals to unlock guns and skins, climb the ranked ladder, and make your own maps.',
     chips: ['🔫 13+ weapons', '🧱 Building', '🏆 Ranked', '👥 Up to 8 players', '🤖 Practice vs bots'] },
-  { id: 'dash', name: 'Pulse Dash', url: '/pulse-dash', tag: 'Rhythm', isNew: true, short: 'Jump, fly and flip through neon levels to the beat. Build your own levels too!',
+  { id: 'craft', name: 'Bluucraft', url: '/bluucraft', tag: 'Sandbox', isNew: true, short: 'Mine, craft and build in a world made of blocks. Survive the night!',
+    desc: 'A block-building survival sandbox. Explore endless worlds with plains, forests, deserts, snowy mountains and badlands. Mine ores, craft tools from wood to diamond, smelt in furnaces, store loot in chests and enchant your gear. Build sparkdust circuits with levers, lamps and pistons. Survive Shamblers, Bonehunters and exploding Fizzlers, light a portal to the fiery Emberdeep, then open a Void Portal and defeat the Void Wyrm. Play in Survival or Creative, and your worlds save in your browser.',
+    chips: ['⛏️ Mine and craft', '🌍 Endless worlds', '🔥 3 dimensions', '🐉 Void Wyrm boss', '⚡ Sparkdust circuits', '🎨 Creative mode'] },
+  { id: 'dash', name: 'Pulse Dash', url: '/pulse-dash', tag: 'Rhythm', short: 'Jump, fly and flip through neon levels to the beat. Build your own levels too!',
     desc: 'A rhythm platformer where one tap does everything. Jump as the cube, fly the ship, flip the ball, ride the wave and warp as the spider through 5 levels from Easy to a Demon bossfight against the Omega core. Find 3 secret coins in every level, unlock icons and trails in the Garage, and use Practice mode with checkpoints. Then make your own levels in the editor, share them with a code, or upload them for everyone on Bluu to play.',
     chips: ['🎵 Music on the beat', '🔺 8 game modes', '⭐ 5 levels + boss', '🛠️ Level editor', '🌐 Online levels', '🎨 Icon garage'] },
   { id: 'iso', name: 'Iso 3D', url: '/iso-3d', tag: 'Sports', short: 'Competitive 3D streetball. 1v1, 2v2 and 3v3 with badges and a shot meter.',
@@ -251,6 +266,7 @@ function statsCard(id, inModal) {
   const a = ME.arena, d = ME.duels;
   const box = (title, nums) => `<div class="stat"${inModal ? ' style="box-shadow:none;background:#f8fbff;margin-bottom:16px"' : ''}><h4>${title}</h4><div class="nums">${nums.map(([v, l]) => '<div><b' + (String(v).length > 6 ? ' class="sm"' : '') + '>' + esc(v) + '</b><span>' + l + '</span></div>').join('')}</div></div>`;
   if (id === 'arena') return box('🔫 Arena Clash', [[a.wins, 'Wins'], [a.kills, 'Kills'], [a.rank, 'Rank']]);
+  if (id === 'craft') { const s = ME.craft || {}; return box('⛏️ Bluucraft', [[s.mined || 0, 'Mined'], [s.mobs || 0, 'Mobs'], [s.boss ? '✓' : '–', 'Wyrm']]); }
   if (id === 'dash') { const s = ME.dash || {}; return box('🔷 Pulse Dash', [[s.stars || 0, 'Stars'], [s.coins || 0, 'Coins'], [s.beaten || 0, 'Beaten']]); }
   if (id === 'iso') { const s = ME.iso || {}; return box('🏀 Iso 3D', [[s.wins || 0, 'Wins'], [s.pts || 0, 'Points'], [s.elo || 1000, '1v1 Elo']]); }
   if (id === 'slap') { const s = ME.slap || {}; return box('🧤 Slap Brawl', [[s.wins || 0, 'Wins'], [s.goals || 0, 'Goals'], [s.kos || 0, 'Knockouts']]); }
@@ -264,7 +280,7 @@ function renderMe() {
     $('meName').innerHTML = esc(ME.username) + (ME.dev ? '<span class="dev">DEV</span>' : '');
     $('hello').innerHTML = 'Welcome back, <em>' + esc(ME.username) + '</em>!';
     $('heroSub').textContent = 'Pick a game and jump in. Your stats are saved to your account in every game.';
-    $('statsBox').innerHTML = '<div class="stats">' + statsCard('dash') + statsCard('iso') + statsCard('slap') + statsCard('arena') + statsCard('duels') + '</div>';
+    $('statsBox').innerHTML = '<div class="stats">' + statsCard('craft') + statsCard('dash') + statsCard('iso') + statsCard('slap') + statsCard('arena') + statsCard('duels') + '</div>';
   } else {
     $('hello').innerHTML = 'Play games with your <em>friends</em>.';
     $('heroSub').textContent = 'Free games, right in your browser. One Bluu account works in every game, and your stats follow you everywhere.';
@@ -276,7 +292,7 @@ function openProfile() {
   const since = ME.created ? new Date(ME.created).toLocaleDateString(undefined, { month: 'long', year: 'numeric' }) : '';
   $('profSheet').innerHTML = `<div class="av" style="background:${avColor(ME.username)}">${esc(ME.username[0].toUpperCase())}</div><h3>${esc(ME.username)}${ME.dev ? '<span class="dev">DEV</span>' : ''}</h3>
     <div style="color:var(--muted);font-size:14px">${since ? 'Joined ' + since + ' · ' : ''}💎 ${ME.arena.crystals} Clash Crystals · Friend code <b>${esc(ME.uid)}</b></div>
-    <div class="stats">${statsCard('dash', true)}${statsCard('iso', true)}${statsCard('slap', true)}${statsCard('arena', true)}${statsCard('duels', true)}</div>
+    <div class="stats">${statsCard('craft', true)}${statsCard('dash', true)}${statsCard('iso', true)}${statsCard('slap', true)}${statsCard('arena', true)}${statsCard('duels', true)}</div>
     <button class="btn plain" id="logout" style="width:100%">Log out</button>`;
   $('profModal').hidden = false;
 }
